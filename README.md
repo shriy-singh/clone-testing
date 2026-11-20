@@ -34,5 +34,7 @@ Then do step 3 above.
 | `index.html` | The page: video player plus an index of what happens when |
 | `thesis_walkthrough.mp4` | The recording, 4 min 48 s, 1280x608, 1.5 MB |
 | `poster.jpg` | Still frame shown before playback starts |
+| `buw-logo.svg` | Bauhaus-Universität Weimar wordmark, from uni-weimar.de |
+| `webis-logo.png` | Webis group logo, from webis.de |
 
 The recording was cropped to remove the browser frame and compressed from the 4K original.
