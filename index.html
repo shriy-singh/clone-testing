@@ -58,6 +58,28 @@
   }
 
   header { display: flex; flex-direction: column; gap: 0.35rem; }
+  .uni-logo {
+    display: block;
+    align-self: flex-start;
+    width: min(17rem, 80vw);
+    margin-bottom: 1.1rem;
+    background: #478bff;
+    line-height: 0;
+  }
+  .uni-logo img { width: 100%; height: auto; display: block; }
+
+  .group {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    padding: 1rem;
+  }
+  .group img { width: 3.5rem; height: 3.5rem; flex: none; background: #1d1d1d; padding: 0.55rem; }
+  @media (max-width: 460px) { .group { flex-direction: column; } }
+  .group div { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.93rem; }
+  .group b { color: var(--strong); }
   .eyebrow {
     font-size: 0.75rem;
     letter-spacing: 0.14em;
@@ -163,7 +185,8 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">M.Sc. thesis &middot; Bauhaus-Universit&auml;t Weimar</div>
+    <a class="uni-logo" href="https://www.uni-weimar.de/en/"><img src="buw-logo.svg" alt="Bauhaus-Universit&auml;t Weimar" width="532" height="62"></a>
+    <div class="eyebrow">M.Sc. thesis &middot; Webis group</div>
     <h1>Clone Testing</h1>
     <p class="sub">An investigation of trust and suspicion in identity recognition during human-machine dialogue</p>
     <hr class="rule">
@@ -247,11 +270,25 @@
   </div>
 
   <section>
+    <h2>Research group</h2>
+    <div class="group">
+      <img src="webis-logo.png" alt="Webis logo" width="256" height="256">
+      <div>
+        <p><b>Webis &middot; Web Technology and Information Systems</b>, Bauhaus-Universit&auml;t Weimar</p>
+        <p>The thesis was supervised within the Webis group by Prof. Dr. Benno Stein, and the live prototype
+        runs on Webis infrastructure. The group does basic research and builds prototype information
+        systems, working on web mining and retrieval, machine learning, computational linguistics and
+        symbolic AI.</p>
+        <p><a href="https://webis.de">webis.de</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>Links</h2>
     <ul class="links">
       <li>Live prototype: <a href="https://thesis-singh.web.webis.de">thesis-singh.web.webis.de</a>
       (password protected, access details on request)</li>
-      <li>Webis group, Bauhaus-Universit&auml;t Weimar: <a href="https://webis.de">webis.de</a></li>
       <li>Code and documentation: <a href="https://github.com/shriy-singh">github.com/shriy-singh</a></li>
     </ul>
   </section>
