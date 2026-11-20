@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clone Testing Walkthrough</title>
+<meta name="description" content="A 4 minute 48 second walkthrough of the Clone Testing study prototype: trust and suspicion in identity recognition during human-machine dialogue.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, video { max-width: 100%; }
+
+  :root {
+    --bg: #fbf9f4;
+    --surface: #ffffff;
+    --fg: #4a4a4a;
+    --strong: #2e2e2e;
+    --heading: #450808;
+    --accent: #8f0d0d;
+    --rule: #e7d192;
+    --hair: #ddd6c4;
+    --font-head: "Roboto Slab", Georgia, "Times New Roman", serif;
+    --font-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17120f;
+      --surface: #1f1916;
+      --fg: #c4bcb2;
+      --strong: #efe8df;
+      --heading: #e7d192;
+      --accent: #d9a05b;
+      --rule: #8a7336;
+      --hair: #3a3029;
+      color-scheme: dark;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-block: 2.5rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  header { display: flex; flex-direction: column; gap: 0.35rem; }
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  h1 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    color: var(--heading);
+    font-size: clamp(1.9rem, 6vw, 2.6rem);
+    line-height: 1.12;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .sub {
+    font-family: var(--font-head);
+    font-weight: 300;
+    color: var(--strong);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin: 0;
+  }
+  .rule { height: 2px; background: var(--rule); border: 0; margin: 0.5rem 0 0; }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    font-size: 0.82rem;
+  }
+  .meta b { color: var(--strong); font-weight: 700; }
+
+  p { margin: 0; }
+  .lede { color: var(--strong); font-size: 1.06rem; }
+
+  figure { margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  video {
+    width: 100%;
+    display: block;
+    background: #000;
+    border: 1px solid var(--hair);
+    border-radius: 2px;
+  }
+  figcaption { font-size: 0.82rem; font-style: italic; }
+
+  h2 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    color: var(--heading);
+    font-size: 1.12rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0 0 0.15rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  ol.index { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  ol.index li { border-bottom: 1px solid var(--hair); }
+  ol.index li:last-child { border-bottom: 0; }
+  .chapter {
+    display: grid;
+    grid-template-columns: 3.6rem 1fr;
+    gap: 0 0.9rem;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    padding: 0.7rem 0.2rem;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .chapter:hover .ch-title, .chapter:focus-visible .ch-title { color: var(--accent); }
+  .chapter:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .t {
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding-top: 0.08rem;
+  }
+  .ch-title { color: var(--strong); font-weight: 700; font-size: 0.97rem; }
+  .ch-note { grid-column: 2; font-size: 0.89rem; }
+
+  .note {
+    background: var(--surface);
+    border-left: 3px solid var(--rule);
+    padding: 0.85rem 1rem;
+    font-size: 0.93rem;
+  }
+  .note b { color: var(--strong); }
+
+  ul.links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.95rem; }
+  a { color: var(--accent); }
+  footer { font-size: 0.8rem; border-top: 1px solid var(--hair); padding-top: 0.9rem; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  @media (max-width: 460px) { .chapter { grid-template-columns: 3.1rem 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">M.Sc. thesis &middot; Bauhaus-Universit&auml;t Weimar</div>
+    <h1>Clone Testing</h1>
+    <p class="sub">An investigation of trust and suspicion in identity recognition during human-machine dialogue</p>
+    <hr class="rule">
+  </header>
+
+  <div class="meta">
+    <span><b>Shriya Singh</b></span>
+    <span>Supervised by Prof. Dr. Benno Stein and Prof. Dr. Maria Wolters</span>
+    <span>Prototype recording, 4 min 48 s</span>
+  </div>
+
+  <p class="lede">This is the study system from the participant's side. An evaluator holds a live text
+  conversation with a partner who is either a real person or an LLM-based clone trained by that same
+  person, and rates how suspicious they are after every single turn rather than once at the end.</p>
+
+  <figure>
+    <video id="film" controls preload="metadata" playsinline poster="poster.jpg">
+      <source src="thesis_walkthrough.mp4" type="video/mp4">
+      Your browser cannot play this recording.
+    </video>
+    <figcaption>Recorded on the local build. The browser frame has been cropped out.</figcaption>
+  </figure>
+
+  <section>
+    <h2>What happens in the recording</h2>
+    <ol class="index">
+      <li>
+        <button class="chapter" data-t="0">
+          <span class="t">0:00</span>
+          <span class="ch-title">Participant sign-in</span>
+          <span class="ch-note">Access is by participant ID, issued to registered participants only.</span>
+        </button>
+      </li>
+      <li>
+        <button class="chapter" data-t="12">
+          <span class="t">0:12</span>
+          <span class="ch-title">Pre-study questionnaire</span>
+          <span class="ch-note">Age, background, and how often the participant uses AI tools and chatbots. These
+          become the covariates for the analysis.</span>
+        </button>
+      </li>
+      <li>
+        <button class="chapter" data-t="45">
+          <span class="t">0:45</span>
+          <span class="ch-title">Round 1 opens</span>
+          <span class="ch-note">Five turns, a countdown, pseudonyms on both sides, and a mission prompt. Here it
+          is the emotional probe: try to elicit a genuine emotional response.</span>
+        </button>
+      </li>
+      <li>
+        <button class="chapter" data-t="165">
+          <span class="t">2:45</span>
+          <span class="ch-title">The rating moves toward human</span>
+          <span class="ch-note">After a mundane reply about coffee and driving, the slider goes to 3 of 10,
+          probably human.</span>
+        </button>
+      </li>
+      <li>
+        <button class="chapter" data-t="235">
+          <span class="t">3:55</span>
+          <span class="ch-title">And then back toward AI</span>
+          <span class="ch-note">Two turns later the same evaluator sits at 7 of 10, probably AI. This reversal
+          is the finding a single end-of-conversation judgement would have hidden.</span>
+        </button>
+      </li>
+      <li>
+        <button class="chapter" data-t="283">
+          <span class="t">4:43</span>
+          <span class="ch-title">Scoring and debrief</span>
+          <span class="ch-note">Points across both rounds, then the post-study survey and the debrief.</span>
+        </button>
+      </li>
+    </ol>
+  </section>
+
+  <div class="note">
+    <p><b>Why the per-turn slider is the point.</b> Across the study, evaluators identified 19 of 20
+    conversations correctly. Underneath that number, trust frequently reversed mid-conversation, including
+    evaluators recovering confidence in a partner they had already begun to doubt, and the clearest cues
+    were stylistic rather than factual.</p>
+  </div>
+
+  <section>
+    <h2>Links</h2>
+    <ul class="links">
+      <li>Live prototype: <a href="https://thesis-singh.web.webis.de">thesis-singh.web.webis.de</a>
+      (password protected, access details on request)</li>
+      <li>Webis group, Bauhaus-Universit&auml;t Weimar: <a href="https://webis.de">webis.de</a></li>
+      <li>Code and documentation: <a href="https://github.com/shriy-singh">github.com/shriy-singh</a></li>
+    </ul>
+  </section>
+
+  <footer>Recording and prototype by Shriya Singh. Shared as part of an application; please do not
+  redistribute.</footer>
+</div>
+
+<script>
+  (function () {
+    var film = document.getElementById('film');
+    var btns = document.querySelectorAll('.chapter');
+    for (var i = 0; i < btns.length; i++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          var t = parseFloat(btn.getAttribute('data-t'));
+          if (!film || isNaN(t)) return;
+          try {
+            film.currentTime = t;
+            var p = film.play();
+            if (p && typeof p.catch === 'function') { p.catch(function () {}); }
+          } catch (e) { /* seek before metadata is loaded */ }
+        });
+      })(btns[i]);
+    }
+  })();
+</script>
+</body>
+</html>
